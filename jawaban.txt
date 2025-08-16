@@ -1,0 +1,27 @@
+1. BUAT DATABASE
+CREATE DATABASE myshop;
+
+2. BUAT TABLE
+- users
+CREATE TABLE users ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT null, email VARCHAR(255) NOT null, password VARCHAR(255) NOT null );
+- categories
+CREATE TABLE categories ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT null );
+-items
+CREATE TABLE items ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, price INT NOT NULL, stock INT NOT NULL, categories_id INT NOT NULL, FOREIGN KEY (categories_id) REFERENCES categories(id) );
+
+3. INSERT DATA
+- Users
+INSERT INTO users(name, email, password) VALUES ('John Doe', 'john@doe.com', 'john123'), ('Jane Doe', 'jane@doe.com', 'jenita123');
+- categories
+INSERT INTO categories (name) VALUES ('gadget'), ('cloth'), ('men'), ('women'), ('branded');
+- items
+INSERT INTO items (name, description, price, stock, categories_id) VALUES ('Sumsang b50', 'hape keren dari merek sumsang', 4000000, 100, 1), ('Uniklooh', 'baju keren dari brand ternama', 500000, 50, 2), ('IMHO Watch', 'jam tangan anak yang jujur banget', 2000000, 10, 1);
+
+4. SELECT DATA
+4a.SELECT id, name, email FROM users;
+4b. - SELECT * FROM items WHERE price > 1000000;
+    - SELECT * FROM items WHERE name LIKE "%Uniklooh%";
+4c. SELECT items.*, categories.name AS categories FROM items INNER JOIN categories ON items.categories_id = categories.id;
+
+5. UPDATE DATA 
+UPDATE items SET price = 5000000 WHERE id=2;
